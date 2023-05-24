@@ -3,17 +3,19 @@ import { useState } from "react";
 function App() {
   return (
     <div>
-      <EventDemo />
+      {/** EventDemo is the name of the function, attributes are parameter */}
+      <EventDemo imageId="237" title="first" />
       <hr />
-      <EventDemo />
+      <EventDemo imageId="238" title="second" />
       <hr />
-      <EventDemo />
+      <EventDemo imageId="239" title="third" />
     </div>
   );
 }
 
-function EventDemo() {
+function EventDemo({ imageId, title }) {
   let [counter, setCounter] = useState(100);
+  let imageUrl = `https://picsum.photos/id/${imageId}/200/200`;
 
   let likeMe = () => {
     counter = counter + 1;
@@ -25,7 +27,11 @@ function EventDemo() {
   // UI
   return (
     <div>
-      <img src="https://picsum.photos/id/237/300" alt="" />
+      <img
+        src={imageUrl}
+        alt=""
+        style={{ width: "100%", objectFit: "cover" }}
+      />
       <h1>Like {counter}</h1>
       <input type="button" value="Like Me" onClick={likeMe} />
     </div>
