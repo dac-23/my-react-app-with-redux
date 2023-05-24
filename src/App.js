@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   return (
@@ -11,6 +11,10 @@ function App() {
 function Todo() {
   let [list, setList] = useState([]);
   let [todo, setTodo] = useState("");
+
+  useEffect(() => {
+    getTodos();
+  }, []);
 
   let inputTodoHandler = (e) => {
     setTodo(e.target.value);
@@ -56,7 +60,6 @@ function Todo() {
         onChange={inputTodoHandler}
       />
       <input type="button" value="Add Todo" onClick={addTodoToDb} />
-      <input type="button" value="GET TODOS" onClick={getTodos} />
       <hr />
 
       {list.map((item, index) => (
