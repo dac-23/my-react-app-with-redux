@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deposit, withdraw } from "./redux/store";
+import { deposit, withdraw } from "./redux/accountSlice";
 
 function App() {
   return (
