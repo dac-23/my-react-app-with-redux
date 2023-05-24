@@ -1,37 +1,45 @@
 import { useState } from "react";
-import { ErrorBoundary } from "react-error-boundary";
 
 function App() {
   return (
-    <ErrorBoundary FallbackComponent={AppErrorHandler}>
-      <div>
-        <SimpleDemo />
-      </div>
-    </ErrorBoundary>
-  );
-}
-
-function SimpleDemo() {
-  let user = { id: 1, name: "rohit" };
-
-  return (
     <div>
-      <h1>Hello World</h1>
-      <h1>{user}</h1>
+      <DepositAccount />
+      <hr />
+      <WithdrawlAccount />
     </div>
   );
 }
 
-function AppErrorHandler() {
+function DepositAccount() {
+  let [balance, setBalance] = useState(1000);
+
+  let depositHandler = () => {
+    let newBalance = balance + 100;
+    setBalance(newBalance);
+  };
+
   return (
     <div>
-      <h1>Handle the Error</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui aliquid
-        accusantium quis cupiditate impedit magni ab natus, facere dignissimos
-        nisi animi officia exercitationem quo earum doloremque a sunt
-        praesentium eos.
-      </p>
+      <h1>Account: CDAC</h1>
+      <h1>Balance: {balance}</h1>
+      <input type="button" value="Deposit" onClick={depositHandler} />
+    </div>
+  );
+}
+
+function WithdrawlAccount() {
+  let [balance, setBalance] = useState(1000);
+
+  let withdrawHandler = () => {
+    let newBalance = balance - 100;
+    setBalance(newBalance);
+  };
+
+  return (
+    <div>
+      <h1>Account: CDAC</h1>
+      <h1>Balance: {balance}</h1>
+      <input type="button" value="Withdraw" onClick={withdrawHandler} />
     </div>
   );
 }
