@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deposit } from "./redux/store";
+import { deposit, withdraw } from "./redux/store";
 
 function App() {
   return (
@@ -33,9 +33,10 @@ function DepositAccount() {
 function WithdrawlAccount() {
   // State is global here
   let { account } = useSelector((state) => state);
+  let dispatch = useDispatch();
 
   let withdrawHandler = () => {
-    // TODO
+    dispatch(withdraw());
   };
 
   return (

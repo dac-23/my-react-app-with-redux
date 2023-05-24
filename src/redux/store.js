@@ -16,10 +16,13 @@ export const accountSlice = createSlice({
     deposit: (state) => {
       state.balance += 100;
     },
+    withdraw: (state) => {
+      state.balance -= 10;
+    },
   },
 });
 
-export let { deposit } = accountSlice.actions;
+export let { deposit, withdraw } = accountSlice.actions;
 
 // SETUP THE STORE :: STORE IS WITH ACCOUNT SLICE/INFORMATION
 export default configureStore({
