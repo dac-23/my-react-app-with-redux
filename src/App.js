@@ -3,14 +3,21 @@ import { useState } from "react";
 function App() {
   return (
     <div>
-      {/** EventDemo is the name of the function, attributes are parameter */}
-      <EventDemo imageId="237" title="first" />
-      <hr />
-      <EventDemo imageId="238" title="second" />
-      <hr />
-      <EventDemo imageId="239" title="third" />
-      <hr />
-      <EventDemo imageId="240" title="third" />
+      <ListDemo />
+    </div>
+  );
+}
+
+function ListDemo() {
+  let list = ["237", "238"];
+
+  return (
+    <div>
+      <h1>List Demo</h1>
+
+      {list.map((item, index) => (
+        <EventDemo key={index} imageId={item} title="first" />
+      ))}
     </div>
   );
 }
