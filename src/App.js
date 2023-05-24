@@ -12,11 +12,28 @@ function ListDemo() {
   // let list = ["237"]; // stateless
   let [list, setList] = useState(["237"]); // statefull
   let [imageInput, setImageInput] = useState("");
+  let [isinvalid, setIsInvalid] = useState(false);
 
   let addNewImage = () => {
+    // validation
+    if (!imageInput) {
+      // alert("Enter image id");
+      setIsInvalid(true);
+      return;
+    }
+
+    let imgInputInt = parseInt(imageInput);
+    if (!imgInputInt) {
+      // alert("Enter image id in Number Format");
+      setIsInvalid(true);
+      return;
+    }
+
     // let newList = ["238", ...list];
     let newList = [imageInput, ...list];
     setList(newList);
+
+    setIsInvalid(false);
   };
 
   let inputImageHandler = (e) => {
@@ -35,6 +52,9 @@ function ListDemo() {
           onChange={inputImageHandler}
         />
         <input type="button" value="Add New Image" onClick={addNewImage} />
+
+        {/** CONDITIONAL EXPRESSION */}
+        {isinvalid && <div className="text-danger">Invalid Image Id</div>}
       </div>
 
       {list.map((item, index) => (
