@@ -11,6 +11,7 @@ function App() {
 }
 
 function DepositAccount() {
+  // State is local here
   let [balance, setBalance] = useState(1000);
 
   let depositHandler = () => {
@@ -28,6 +29,7 @@ function DepositAccount() {
 }
 
 function WithdrawlAccount() {
+  // State is local here.
   let [balance, setBalance] = useState(1000);
 
   let withdrawHandler = () => {
