@@ -24,9 +24,15 @@ function EventDemo() {
     console.log(e.target);
   };
 
-  // User defined param
+  // User defined param :: e is not available
   let likeMe2 = (p1) => {
     console.log(p1);
+  };
+
+  // Both e and p1
+  let likeMe3 = (e, p1) => {
+    console.log(p1);
+    console.log(e);
   };
 
   // UI
@@ -38,6 +44,13 @@ function EventDemo() {
 
       {/** For User Defined param */}
       <input type="button" value="Like Me 2" onClick={() => likeMe2("data")} />
+
+      {/** Default Param + User Defined Param */}
+      <input
+        type="button"
+        value="Like Me 3"
+        onClick={(e) => likeMe3(e, "data")}
+      />
     </div>
   );
 }
