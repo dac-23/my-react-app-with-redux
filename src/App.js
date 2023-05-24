@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deposit } from "./redux/store";
 
 function App() {
   return (
@@ -11,36 +13,35 @@ function App() {
 }
 
 function DepositAccount() {
-  // State is local here
-  let [balance, setBalance] = useState(1000);
+  // State is global here
+  let { account } = useSelector((state) => state);
+  let dispatch = useDispatch();
 
   let depositHandler = () => {
-    let newBalance = balance + 100;
-    setBalance(newBalance);
+    dispatch(deposit());
   };
 
   return (
     <div>
       <h1>Account: CDAC</h1>
-      <h1>Balance: {balance}</h1>
+      <h1>Balance: {account.balance}</h1>
       <input type="button" value="Deposit" onClick={depositHandler} />
     </div>
   );
 }
 
 function WithdrawlAccount() {
-  // State is local here.
-  let [balance, setBalance] = useState(1000);
+  // State is global here
+  let { account } = useSelector((state) => state);
 
   let withdrawHandler = () => {
-    let newBalance = balance - 100;
-    setBalance(newBalance);
+    // TODO
   };
 
   return (
     <div>
       <h1>Account: CDAC</h1>
-      <h1>Balance: {balance}</h1>
+      <h1>Balance: {account.balance}</h1>
       <input type="button" value="Withdraw" onClick={withdrawHandler} />
     </div>
   );
