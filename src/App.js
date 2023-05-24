@@ -1,90 +1,37 @@
 import { useState } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
 function App() {
   return (
-    <div>
-      <ListDemo />
-    </div>
-  );
-}
-
-function ListDemo() {
-  // let list = ["237"]; // stateless
-  let [list, setList] = useState(["237"]); // statefull
-  let [imageInput, setImageInput] = useState("");
-  let [isinvalid, setIsInvalid] = useState(false);
-
-  let addNewImage = () => {
-    // validation
-    if (!imageInput) {
-      // alert("Enter image id");
-      setIsInvalid(true);
-      return;
-    }
-
-    let imgInputInt = parseInt(imageInput);
-    if (!imgInputInt) {
-      // alert("Enter image id in Number Format");
-      setIsInvalid(true);
-      return;
-    }
-
-    // let newList = ["238", ...list];
-    let newList = [imageInput, ...list];
-    setList(newList);
-
-    setIsInvalid(false);
-  };
-
-  let inputImageHandler = (e) => {
-    setImageInput(e.target.value);
-  };
-
-  return (
-    <div>
-      <h1>List Demo</h1>
-
-      <div className="my-2">
-        <input
-          type="text"
-          placeholder="Enter Image Id"
-          value={imageInput}
-          onChange={inputImageHandler}
-        />
-        <input type="button" value="Add New Image" onClick={addNewImage} />
-
-        {/** CONDITIONAL EXPRESSION */}
-        {isinvalid && <div className="text-danger">Invalid Image Id</div>}
+    <ErrorBoundary FallbackComponent={AppErrorHandler}>
+      <div>
+        <SimpleDemo />
       </div>
+    </ErrorBoundary>
+  );
+}
 
-      {list.map((item, index) => (
-        <EventDemo key={index} imageId={item} title="first" />
-      ))}
+function SimpleDemo() {
+  let user = { id: 1, name: "rohit" };
+
+  return (
+    <div>
+      <h1>Hello World</h1>
+      <h1>{user}</h1>
     </div>
   );
 }
 
-function EventDemo({ imageId, title }) {
-  let [counter, setCounter] = useState(100);
-  let imageUrl = `https://picsum.photos/id/${imageId}/200/200`;
-
-  let likeMe = () => {
-    counter = counter + 1;
-
-    // Trigger the DOM Operation :: Asking the REACT to perform DOM
-    setCounter(counter);
-  };
-
-  // UI
+function AppErrorHandler() {
   return (
     <div>
-      <img
-        src={imageUrl}
-        alt=""
-        style={{ width: "100%", objectFit: "cover" }}
-      />
-      <h1>Like {counter}</h1>
-      <input type="button" value="Like Me" onClick={likeMe} />
+      <h1>Handle the Error</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui aliquid
+        accusantium quis cupiditate impedit magni ab natus, facere dignissimos
+        nisi animi officia exercitationem quo earum doloremque a sunt
+        praesentium eos.
+      </p>
     </div>
   );
 }
